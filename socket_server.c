@@ -15,11 +15,11 @@
 #include <pthread.h>
 #include <unistd.h>
 
-int buffer_frames = 128;                                                                                        
-unsigned int rate = 22050;                                                                                      
+int buffer_frames = 1024 * 4;		//origin 128, better to be multiple of 8?                                                                                       
+unsigned int rate = 44100;                                                                                      
 snd_pcm_format_t format = SND_PCM_FORMAT_S16_LE;
 int err;
-int read_i = 0;
+volatile int read_i = 0;
 
 void initialize(snd_pcm_t *capture_handle, snd_pcm_hw_params_t *hw_params, int chann);
 
@@ -61,9 +61,9 @@ void capture_t(void *argv)
     exit(1); 
   }
 
-  while(read_i++ < 500)
+  while(read_i++ < 1500)
   {
-    printf("starting reading\n");                                                                             
+    //printf("starting reading\n");                                                                             
     if ((err = snd_pcm_readi (capture_handle, buffer, 1024)) != 1024) {                     
       printf ("read from audio interface failed %d\n", read_i);                                                    
                //err, snd_strerror (err));                                                                    
@@ -94,7 +94,7 @@ main (int argc, char *argv[])
   FILE *recFile;
   recFile = fopen("record/socket_server.raw", "wb");
 
-  temp = (unsigned char *)malloc(1776);
+  temp = (unsigned char *)malloc(buffer_frames * 2);
 
   snd_pcm_t *play_handle;
   snd_pcm_hw_params_t *hw_params_play;
@@ -133,30 +133,30 @@ main (int argc, char *argv[])
   struct dest_ip myip;
   myip.ip = argv[1];
   pthread_t capture_thread;                                                                               
-  recvfrom(server_socket_fd, temp, 1776, 0, (struct sockaddr*)&client_addr, &client_addr_length);
+  recvfrom(server_socket_fd, temp, buffer_frames * 2, 0, (struct sockaddr*)&client_addr, &client_addr_length);
   if(pthread_create(&capture_thread, NULL, (void *)capture_t, (void *)&myip) != 0)                                 
       printf("create capture thread failed...\n");
 
   i = 0;
-  while(i++ < 500)
+  while(i++ < 1500)
   {
     //printf("waiting for data...\n");
-    if(recvfrom(server_socket_fd, temp, 1776, 0, (struct sockaddr*)&client_addr, &client_addr_length) == -1)
+    if(recvfrom(server_socket_fd, temp, buffer_frames * 2, 0, (struct sockaddr*)&client_addr, &client_addr_length) == -1)
       printf("receiving failed...\n");
-    //fwrite(temp, sizeof(temp[0]), 1776, recFile);
+    //fwrite(temp, sizeof(temp[0]), buffer_frames * 2, recFile);
 
     //stop
     if(atoi(temp) == 1010)
     {
       printf("stop received!\n");
-      read_i = 500;
-      i = 500;
+      read_i = 1500;
+      i = 1500;
       sleep(1);
       sendto(server_socket_fd, temp, 4, 0, (struct sockaddr*)&client_addr, client_addr_length);
     }
 
     //printf("starting writing\n");                                               
-    if ((err = snd_pcm_writei (play_handle, temp, 888)) != 888) {
+    if ((err = snd_pcm_writei (play_handle, temp, buffer_frames)) != buffer_frames) {
       printf("write to audio interface failed %d\n", i);                        
                //err, snd_strerror (err));                                      
       /*if(err == -EBADFD)                                                        
