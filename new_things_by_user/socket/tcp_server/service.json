@@ -1,0 +1,31 @@
+{
+  "type": "hope_service",
+  "name": "tcp_server",
+  "description": "",
+  "spec": {
+    "in": {
+      "ports": [
+        {
+          "name": "host",
+          "type": "string"
+        },
+        {
+          "name": "port",
+          "type": "int"
+        }
+      ]
+    },
+    "out": {
+      "ports": [
+        {
+          "name": "recv",
+          "type": "string"
+        }
+      ]
+    },
+    "name": "tcp_server",
+    "id": "SPEC__f33621c0-781b-11e6-b2ee-59ae29682c1c"
+  },
+  "id": "HOPE_SERVICE_f366ceb0_781b_11e6_96e2_097d5ff324ed",
+  "thing": "HOPE_THING_af15a420_781b_11e6_96e2_097d5ff324ed"
+}

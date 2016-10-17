@@ -1,0 +1,33 @@
+{
+  "type": "hope_service",
+  "name": "call_switch",
+  "description": "send only true if switch is pressed ",
+  "spec": {
+    "in": {
+      "ports": [
+        {
+          "name": "trigger"
+        }
+      ]
+    },
+    "out": {
+      "ports": [
+        {
+          "name": "calling",
+          "type": "boolean"
+        }
+      ]
+    },
+    "config": [
+      {
+        "name": "pin",
+        "type": "int",
+        "required": true
+      }
+    ],
+    "name": "call_switch",
+    "id": "SPEC__2a87b9e0-756a-11e6-a0f5-d962ba7207f6"
+  },
+  "id": "HOPE_SERVICE_2a49c680_756a_11e6_9740_5d2423b46b0a",
+  "thing": "HOPE_THING_a9970e40_7563_11e6_9740_5d2423b46b0a"
+}

@@ -1,0 +1,22 @@
+{
+  "type": "hope_service",
+  "name": "play_binary",
+  "description": "receive song id and play",
+  "spec": {
+    "in": {
+      "ports": [
+        {
+          "name": "song_id",
+          "type": "string"
+        }
+      ]
+    },
+    "out": {
+      "ports": []
+    },
+    "name": "play_binary",
+    "id": "SPEC__727a2530-9144-11e6-bb8e-0b51c6fa072a"
+  },
+  "id": "HOPE_SERVICE_72a309f0_9144_11e6_8594_35ac43a68e41",
+  "thing": "HOPE_THING_466a15e0_9144_11e6_8594_35ac43a68e41"
+}

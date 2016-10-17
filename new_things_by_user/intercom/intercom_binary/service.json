@@ -1,0 +1,26 @@
+{
+  "type": "hope_service",
+  "name": "intercom_binary",
+  "description": "speak to intercom app",
+  "spec": {
+    "in": {
+      "ports": [
+        {
+          "name": "speak_call",
+          "type": "boolean"
+        },
+        {
+          "name": "app_ip",
+          "type": "string"
+        }
+      ]
+    },
+    "out": {
+      "ports": []
+    },
+    "name": "intercom_binary",
+    "id": "SPEC__bd585140-7564-11e6-a0f5-d962ba7207f6"
+  },
+  "id": "HOPE_SERVICE_bd21ff00_7564_11e6_9740_5d2423b46b0a",
+  "thing": "HOPE_THING_a9970e40_7563_11e6_9740_5d2423b46b0a"
+}

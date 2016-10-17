@@ -1,0 +1,34 @@
+{
+	"songs": [
+		{
+			"id": "1",
+			"song": "Demons",
+			"singer": "Imagine Dragons",
+			"path": "/media/sdcard/Imagine Dragons - Demons.mp3"
+		},
+		{
+			"id": "2",
+			"song": "Sealed With A Kiss",
+			"singer": "Jason Donovan",
+			"path": "/media/sdcard/Jason Donovan - Sealed With A Kiss.mp3"
+		},
+		{
+			"id": "3",
+			"song": "夜空中最亮的星",
+			"singer": "逃跑计划",
+			"path": "/media/sdcard/夜空中最亮的星.mp3"
+		},
+		{
+			"id": "4",
+			"song": "Hotel California",
+			"singer": "Eagles",
+			"path": "/media/sdcard/Eagles - Hotel California.mp3"
+		},
+		{
+			"id": "5",
+			"song": "一生何求",
+			"singer": "陈百强",
+			"path": "/media/sdcard/陈百强 - 一生何求.mp3"
+		}
+	]
+}
